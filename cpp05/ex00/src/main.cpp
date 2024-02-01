@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:25:08 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/01 15:26:39 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:06:35 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,8 @@
 
 int main()
 {
-    Bureaucrat h;
-    // h = ins;
-
-    try
-    {
-        Bureaucrat ins;
-    }
-    catch () {
-        
-    }
-
+    Bureaucrat::GradeTooHighException h;
+    
+    std::cout << h.what()<< std::endl;
     
 }

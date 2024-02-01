@@ -1,6 +1,7 @@
-#   Nested class
+#   Nested classes
 
-**Why do we use inner class**  
+**Why do we use inner classes**  
+  
 -> Inner classes in C++ are used to encapsulate related functionality within a class, control access to private members, implement callback mechanisms, and hide implementation details. They are defined within the scope of another class and can access private members of the enclosing class
 
 
