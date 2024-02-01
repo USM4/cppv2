@@ -6,14 +6,17 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:25:08 by oredoine          #+#    #+#             */
-/*   Updated: 2024/01/22 22:41:38 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:26:39 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "../includes/Bureaucrat.hpp"
 
 int main()
 {
+    Bureaucrat h;
+    // h = ins;
+
     try
     {
         Bureaucrat ins;
@@ -21,10 +24,6 @@ int main()
     catch () {
         
     }
-    catch () {
-        
-    }
-    Bureaucrat h;
-    h = ins;
+
     
 }

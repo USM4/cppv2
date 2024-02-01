@@ -1,3 +1,9 @@
+#   Nested class
+
+**Why do we use inner class**  
+-> Inner classes in C++ are used to encapsulate related functionality within a class, control access to private members, implement callback mechanisms, and hide implementation details. They are defined within the scope of another class and can access private members of the enclosing class
+
+
 # Exceptions handling (try catch throw)
 
 -> Exception handling in C++ is a mechanism that allows you to handle runtime errors or    exceptional situations gracefully, An exception is an unexpected problem that arises during the  execution of a program our program terminates suddenly with some errors/issues. Exception occurs  during the running of the program (runtime).   
@@ -13,5 +19,3 @@
 **THROW :**  
 
 >An exception in C++ can be thrown using the throw keyword. When a program encounters a throw statement, then it immediately terminates the current function and starts finding a matching catch block to handle the thrown exception.
-
-->
