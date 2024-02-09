@@ -6,25 +6,25 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:06:37 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/03 01:16:49 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:21:41 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(): name("DefName"), grade(12)
+Form::Form(): name("DefName"), grade(12), exec(1)
 {
+    grade_bounds();
     sign = false;
-    flag = 0;
 }
 
-Form::Form(std::string name, int grade): name(name), grade(grade)
+Form::Form(std::string name, int grade, int exec): name(name), grade(grade), exec(exec) 
 {
+    grade_bounds();
     sign = false;
-    flag = 0;
 }
 
-Form::Form(Form &copy) : name("CopName"), sign(false),grade(15), flag(0)
+Form::Form(Form &copy) : name("CopName"), sign(false),grade(15), exec(1)
 {
     *this  = copy;
 }
@@ -32,20 +32,16 @@ Form::Form(Form &copy) : name("CopName"), sign(false),grade(15), flag(0)
 Form& Form::operator=(const Form &copy)
 {
     if(this != &copy)
-    {
         this->sign = copy.sign;
-        this->flag = copy.flag;
-    }
     return(*this);
 }
 
-int Form::grade_bounds() const
+void Form::grade_bounds()
 {
     if (grade > 150)
         throw GradeTooLowException();
     else if(grade < 1)
         throw GradeTooHighException();
-    return(grade);
 }
 
 std::string Form::getName() const
@@ -55,12 +51,17 @@ std::string Form::getName() const
 
 int Form::getGrade() const
 {
-    return this->grade;    
+    return this->grade;
 }
 
 bool Form::getSign() const
 {
     return this->sign;
+}
+
+int Form::getExec() const
+{
+    return(this->exec);
 }
 
 const char* Form::GradeTooHighException::what() const throw()
@@ -73,26 +74,15 @@ const char* Form::GradeTooLowException::what() const throw()
     return("too Low grade in the form");
 }
 
-void    Form::beSigned(Bureaucrat& bureaucrat)
+bool    Form::beSigned(Bureaucrat& bureaucrat)
 {
     if(bureaucrat.getGrade() > grade)
-    {
-        flag = 1;
         throw GradeTooLowException();
-    }
-    else if((bureaucrat.getGrade() <= grade) && grade_bounds())
-    {
-        puts("dkhli");
+    else if(bureaucrat.getGrade() <= grade)
         sign = true;
-    }
+    return sign;
 }
 
-std::string Form::getReason()
-{
-    if(flag)
-        return("Grade was too low");
-    return("Grade not between the bounds");
-}
 
 std::ostream& operator<<(std::ostream& os, Form const *objref)
 {

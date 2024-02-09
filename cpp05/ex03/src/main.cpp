@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,36 +7,40 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:25:08 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/08 15:23:15 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/05 00:09:32 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
-#include "Bureaucrat.hpp"
-
+#include "Intern.hpp"
 
 int main()
 {
+    AForm      *form = NULL;
+    AForm      *form1 = NULL;
+    AForm      *form2 = NULL;
     Bureaucrat *bureaucrat = NULL;
-    Form *form = NULL;
+
     try
     {
-        bureaucrat = new Bureaucrat("USM4", 15);
-        form = new Form("the form", 14, 20);
-        bureaucrat->increment_grade();
-        bureaucrat->increment_grade();
-        // bureaucrat->increment_grade();
-        // bureaucrat->decrement_grade();
-        std::cout<< bureaucrat << std::endl;
+        Intern someRandomIntern;
+        bureaucrat  = new Bureaucrat("USM4 ",1);
+        form = someRandomIntern.makeForm("robotomy request", "Bender");
+        form1 = someRandomIntern.makeForm("presidential pardon", "Tom");
+        form2 = someRandomIntern.makeForm("shrubbery creation", "flen");
         form->beSigned(*bureaucrat);
-        std::cout<< form << std::endl;
+        form->execute(*bureaucrat);
+        form1->beSigned(*bureaucrat);
+        form1->execute(*bureaucrat);
+        form2->beSigned(*bureaucrat);
+        form2->execute(*bureaucrat);
     }
-    catch(const std::exception &e)
+    catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what() << '\n';
     }
-    if (bureaucrat)
-        bureaucrat->signForm(*form);
+
     delete bureaucrat;
     delete form;
+    delete form1;
+    delete form2;
 }

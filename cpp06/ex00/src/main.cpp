@@ -5,25 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 18:25:08 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/08 15:16:50 by oredoine         ###   ########.fr       */
+/*   Created: 2024/02/08 15:57:58 by oredoine          #+#    #+#             */
+/*   Updated: 2024/02/09 21:45:08 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Bureaucrat.hpp"
+#include "ScalarConverter.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-    try
-    {
-        Bureaucrat bureacrat("USM4", -15);
-        bureacrat.increment_grade();
-        bureacrat.decrement_grade();
-        bureacrat.increment_grade();
-        std::cout << bureacrat;
-    }
-    catch(const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+    if(ac > 1)
+        ScalarConverter::convert(av[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:38:41 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/03 00:31:21 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/04 15:38:14 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
     return("too Low grade");
 }
 
-
 std::ostream& operator<<(std::ostream& os, Bureaucrat const *objref)
 {
     os << objref->getName() << " , bureaucrat grade " << objref->getGrade() << std::endl;
@@ -82,7 +81,7 @@ void Bureaucrat::signForm(Form& obj)
     if (obj.getSign())
         std::cout << getName() << " signed " << obj.getName()<< std::endl;
     else
-        std::cout << getName() << "  couldn’t sign " << obj.getName()<< " because " << obj.getReason() << std::endl;
+        std::cout << getName() << "  couldn’t sign " << obj.getName()<< " because of the unrequired grade ." << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()

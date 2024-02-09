@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 15:16:32 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/08 15:26:36 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:09:22 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
         " has been robotomized successfully ",
         " Robotomy failed!"};
 		srand(static_cast<unsigned int>(time(0)));
-		int r = rand();
+		unsigned int r = rand();
+        // std::cout << r << std::endl;
         if(r % 2 == 0)
             std::cout<< target << messages[0] << std::endl;
-        else            
+        else
             std::cout<< messages[1] << std::endl;
     }
-        
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()

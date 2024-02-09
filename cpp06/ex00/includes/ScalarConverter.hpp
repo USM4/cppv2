@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 18:25:08 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/08 15:16:50 by oredoine         ###   ########.fr       */
+/*   Created: 2024/02/08 16:00:08 by oredoine          #+#    #+#             */
+/*   Updated: 2024/02/08 21:43:34 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Bureaucrat.hpp"
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
-int main()
+#include <iostream>
+#include <iomanip>
+
+class ScalarConverter
 {
-    try
-    {
-        Bureaucrat bureacrat("USM4", -15);
-        bureacrat.increment_grade();
-        bureacrat.decrement_grade();
-        bureacrat.increment_grade();
-        std::cout << bureacrat;
-    }
-    catch(const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-}
+    private:
+        ScalarConverter();
+    public:
+        static void convert(std::string number);
+        ~ScalarConverter();
+};
+
+#endif

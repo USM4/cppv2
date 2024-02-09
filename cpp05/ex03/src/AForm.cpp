@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 15:00:27 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/07 19:21:24 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:06:38 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ AForm::AForm(): name("DefName"), grade(12), exec(1)
     sign = false;
 }
 
-AForm::AForm(std::string name, int grade, int exec): name(name), grade(grade), exec(exec)
+AForm::AForm(std::string name, int grade, int exec): name(name), grade(grade), exec(exec) 
 {
     grade_bounds();
     sign = false;
