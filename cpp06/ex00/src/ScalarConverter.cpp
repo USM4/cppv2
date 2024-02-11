@@ -6,12 +6,11 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:50:14 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/10 00:48:06 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/11 01:44:24 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
 
 int check_is_integer(std::string num)
 {
@@ -69,28 +68,135 @@ int check_is_double(std::string num)
             return 1;
         index++;
     }
-    if(count_dots != 1 || !std::isdigit(num[num.length() - 1]))
+    if(count_dots != 1)
         return 1;
     return 0;
 }
 
+int IsHadot(std::string str)
+{
+    for(size_t i = 0; i <= str.length() ; i++)
+    {
+        if(str[i] == '.')
+            return 1;
+    }
+    return 0;
+}
+
+void printChar(char charValue)
+{
+    if(charValue < 32 || charValue > 126)
+        std::cout<< "char: " << "Non displayable" << std::endl;
+    else
+        std::cout<< "char: " << charValue << std::endl;
+}
+
+void printDouble(double doubleValue, int num)
+{
+    if(!static_cast<double>(num - doubleValue))
+        std::cout<< "double: " << doubleValue << ".0" << std::endl;
+    else
+        std::cout<< "double: " << doubleValue << std::endl;
+}
+
+void printFloat(float floatValue, int intValue)
+{
+    if(!static_cast<float>(intValue - floatValue))
+        std::cout<< "float: " << floatValue << ".0f" << std::endl;
+    else
+        std::cout<< "float: " << floatValue << "f" << std::endl;
+}
+
+void convert_printInt(int num)
+{
+    if (num >= std::numeric_limits<int>::max() && num <= std::numeric_limits<int>::min())
+    {
+        std::cerr<< "Casting would result in overflow or underflow" << std::endl;
+        return ;
+    }
+    float floatValue = static_cast<float>(num);
+    double doubleValue = static_cast<double>(num);
+    char charValue = static_cast<char>(num);
+    
+    printChar(charValue);
+    std::cout<< "int: " << num << std::endl;
+    std::cout<< "float: " << floatValue << ".0f" << std::endl;
+    std::cout<< "Double: " << doubleValue << ".0"<< std::endl;
+}
 
 
+void convert_printFloat(float num)
+{
+    if (num >= std::numeric_limits<float>::max() && num <= std::numeric_limits<float>::min())
+    {
+        std::cerr<< "Casting would result in overflow or underflow" << std::endl;
+        return ;
+    }     
+    int intValue = static_cast<int>(num);
+    double doubleValue = static_cast<double>(num);
+    char charValue = static_cast<char>(num);
+
+    printChar(charValue);
+    //dbl
+    std::cout<< "int: " << intValue << std::endl;
+    printFloat(num, intValue);
+    printDouble(doubleValue, intValue);
+}
+void convert_printDouble(double num)
+{
+    if (num >= std::numeric_limits<double>::max() && num <= std::numeric_limits<double>::min())
+    {
+        std::cerr<< "Casting would result in overflow or underflow" << std::endl;
+        return ;         
+    }
+    float floatValue = static_cast<float>(num);
+    int intValue = static_cast<int>(num);
+    char charValue = static_cast<char>(num);
+    printChar(charValue);
+    std::cout<< "int: " << intValue << std::endl;
+    printFloat(floatValue, intValue);
+    printDouble(num, intValue);
+
+}
+
+void convert_printChar(char num)
+{
+    float floatValue = static_cast<float>(num);
+    int intValue = static_cast<int>(num);
+    double DoubleValue = static_cast<double>(num);
+    printChar(num);
+    std::cout<< "int :"<< intValue << std::endl;
+    printFloat(floatValue, intValue);
+    printDouble(DoubleValue, intValue);
+}
 
 void  ScalarConverter::convert(std::string number)
 {
     if(!check_is_integer(number))
-        printf("HADA INTEGER\n");
-    if(!check_is_char(number))
-        printf("HADA char\n");
-    if(!check_is_float(number))
-        printf("HADA float\n");
+        convert_printInt(std::stoi(number.c_str()));
+    else if(!check_is_float(number))
+        convert_printFloat(std::atof(number.c_str()));
     else if(!check_is_double(number))
-        printf("HADA double\n");
-        
+        convert_printDouble( std::stod(number.c_str()));
+    else if(!check_is_char(number))
+        convert_printChar(number[0]);
+    else if(number == "-inf" || number == "+inf" ||  number == "nan")
+    {
+        std::cout<<"char: "<<"impossible"<< std::endl;
+        std::cout<< "int: " << "impossible" << std::endl;
+        std::cout<< "float: " << "nanf" << std::endl;
+        std::cout<< "double: " << "nan" << std::endl;
+    }
+    else if (number == "-inff" || number == "+inff" || number == "nanf")
+    {
+        std::cout<<"char: "<<"impossible"<< std::endl;
+        std::cout<< "int: " << "impossible" << std::endl;
+        std::cout<< "float: " << "nanf" << std::endl;
+        std::cout<< "double: " << "nan" << std::endl;
+    }
+    else
+        std::cout << "Data type not recognized" << std::endl;
 }
-
-
 ScalarConverter::~ScalarConverter()
 {
     
