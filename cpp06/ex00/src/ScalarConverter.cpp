@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:50:14 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/11 01:44:24 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:09:54 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,21 +107,25 @@ void printFloat(float floatValue, int intValue)
         std::cout<< "float: " << floatValue << "f" << std::endl;
 }
 
-void convert_printInt(int num)
+void convert_printInt(long double num)
 {
-    if (num >= std::numeric_limits<int>::max() && num <= std::numeric_limits<int>::min())
-    {
-        std::cerr<< "Casting would result in overflow or underflow" << std::endl;
-        return ;
-    }
     float floatValue = static_cast<float>(num);
     double doubleValue = static_cast<double>(num);
     char charValue = static_cast<char>(num);
-    
-    printChar(charValue);
-    std::cout<< "int: " << num << std::endl;
-    std::cout<< "float: " << floatValue << ".0f" << std::endl;
-    std::cout<< "Double: " << doubleValue << ".0"<< std::endl;
+    if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
+    {
+        std::cerr<< "int : Casting would result in overflow or underflow" << std::endl;
+        printChar(charValue);
+        std::cout<< "float: " << floatValue << ".0f" << std::endl;
+        std::cout<< "Double: " << doubleValue << ".0"<< std::endl;
+    }
+    else
+    {        
+        printChar(charValue);
+        std::cout<< "int: " << num << std::endl;
+        std::cout<< "float: " << floatValue << ".0f" << std::endl;
+        std::cout<< "Double: " << doubleValue << ".0"<< std::endl;
+    }
 }
 
 
@@ -131,13 +135,12 @@ void convert_printFloat(float num)
     {
         std::cerr<< "Casting would result in overflow or underflow" << std::endl;
         return ;
-    }     
+    }
     int intValue = static_cast<int>(num);
     double doubleValue = static_cast<double>(num);
     char charValue = static_cast<char>(num);
 
     printChar(charValue);
-    //dbl
     std::cout<< "int: " << intValue << std::endl;
     printFloat(num, intValue);
     printDouble(doubleValue, intValue);
@@ -172,12 +175,15 @@ void convert_printChar(char num)
 
 void  ScalarConverter::convert(std::string number)
 {
+    std::stringstream s(number);
+    long double a;
+    s >> a;
     if(!check_is_integer(number))
-        convert_printInt(std::stoi(number.c_str()));
+        convert_printInt(a);
     else if(!check_is_float(number))
         convert_printFloat(std::atof(number.c_str()));
     else if(!check_is_double(number))
-        convert_printDouble( std::stod(number.c_str()));
+        convert_printDouble( std::atof(number.c_str()));
     else if(!check_is_char(number))
         convert_printChar(number[0]);
     else if(number == "-inf" || number == "+inf" ||  number == "nan")
@@ -197,6 +203,7 @@ void  ScalarConverter::convert(std::string number)
     else
         std::cout << "Data type not recognized" << std::endl;
 }
+
 ScalarConverter::~ScalarConverter()
 {
     
