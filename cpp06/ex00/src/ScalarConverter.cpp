@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:50:14 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/12 18:09:54 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:39:01 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,75 +91,46 @@ void printChar(char charValue)
         std::cout<< "char: " << charValue << std::endl;
 }
 
-void printDouble(double doubleValue, int num)
-{
-    if(!static_cast<double>(num - doubleValue))
-        std::cout<< "double: " << doubleValue << ".0" << std::endl;
-    else
-        std::cout<< "double: " << doubleValue << std::endl;
-}
-
-void printFloat(float floatValue, int intValue)
-{
-    if(!static_cast<float>(intValue - floatValue))
-        std::cout<< "float: " << floatValue << ".0f" << std::endl;
-    else
-        std::cout<< "float: " << floatValue << "f" << std::endl;
-}
-
 void convert_printInt(long double num)
 {
-    float floatValue = static_cast<float>(num);
-    double doubleValue = static_cast<double>(num);
-    char charValue = static_cast<char>(num);
+    int a;
     if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
     {
-        std::cerr<< "int : Casting would result in overflow or underflow" << std::endl;
-        printChar(charValue);
-        std::cout<< "float: " << floatValue << ".0f" << std::endl;
-        std::cout<< "Double: " << doubleValue << ".0"<< std::endl;
+        std::cout<< "int : impossible casting would result in overflow or underflow" << std::endl;
     }
     else
     {        
-        printChar(charValue);
-        std::cout<< "int: " << num << std::endl;
-        std::cout<< "float: " << floatValue << ".0f" << std::endl;
-        std::cout<< "Double: " << doubleValue << ".0"<< std::endl;
+       a = static_cast<int>(num);
+        std::cerr<< "int : " << a <<  std::endl;
     }
 }
 
 
-void convert_printFloat(float num)
+void convert_printFloat(long double num)
 {
-    if (num >= std::numeric_limits<float>::max() && num <= std::numeric_limits<float>::min())
+    double a;
+    if (num > MAXFLOAT)
     {
-        std::cerr<< "Casting would result in overflow or underflow" << std::endl;
+        std::cout<< "float : impossible casting would result in overflow or underflow" << std::endl;
         return ;
     }
-    int intValue = static_cast<int>(num);
-    double doubleValue = static_cast<double>(num);
-    char charValue = static_cast<char>(num);
-
-    printChar(charValue);
-    std::cout<< "int: " << intValue << std::endl;
-    printFloat(num, intValue);
-    printDouble(doubleValue, intValue);
-}
-void convert_printDouble(double num)
-{
-    if (num >= std::numeric_limits<double>::max() && num <= std::numeric_limits<double>::min())
-    {
-        std::cerr<< "Casting would result in overflow or underflow" << std::endl;
-        return ;         
+    else 
+    { 
+        a = static_cast<float>(num);
+        std::cout<< std::fixed << "float : " << std::setprecision(2) << a << "f" << std::endl;
     }
-    float floatValue = static_cast<float>(num);
-    int intValue = static_cast<int>(num);
-    char charValue = static_cast<char>(num);
-    printChar(charValue);
-    std::cout<< "int: " << intValue << std::endl;
-    printFloat(floatValue, intValue);
-    printDouble(num, intValue);
+}
 
+void convert_printDouble(long double num)
+{
+    double a;
+    if (num > std::numeric_limits<double>::max())
+            std::cerr<< "double : impossible casting would result in overflow or underflow" << std::endl;
+    else
+    {
+        a = static_cast<double>(num);
+        std::cout<< std::fixed <<"double :" << std::setprecision(2) << a  << std::endl;
+    }
 }
 
 void convert_printChar(char num)
@@ -169,36 +140,49 @@ void convert_printChar(char num)
     double DoubleValue = static_cast<double>(num);
     printChar(num);
     std::cout<< "int :"<< intValue << std::endl;
-    printFloat(floatValue, intValue);
-    printDouble(DoubleValue, intValue);
+    std::cout<< std::fixed << "float : " << std::setprecision(2) << floatValue << "f" << std::endl;
+    std::cout<< std::fixed <<"double :" << std::setprecision(2) << DoubleValue  << std::endl;
 }
 
 void  ScalarConverter::convert(std::string number)
 {
-    std::stringstream s(number);
     long double a;
+    std::string tmp;
+    if (number[number.size() -1] == 'f')
+        tmp = number.substr(0, number.size() - 1);
+    else
+        tmp = number;
+    std::stringstream s(tmp);
     s >> a;
-    if(!check_is_integer(number))
-        convert_printInt(a);
-    else if(!check_is_float(number))
-        convert_printFloat(std::atof(number.c_str()));
-    else if(!check_is_double(number))
-        convert_printDouble( std::atof(number.c_str()));
-    else if(!check_is_char(number))
+    if(!check_is_char(number))
         convert_printChar(number[0]);
-    else if(number == "-inf" || number == "+inf" ||  number == "nan")
+    else if (!check_is_integer(number) || !check_is_float(number) || !check_is_double(number))
+    {
+        printChar(a);
+        convert_printInt(a);
+        convert_printFloat(a);
+        convert_printDouble(a);
+    } 
+    else if(number == "nan" || number == "nanf")
     {
         std::cout<<"char: "<<"impossible"<< std::endl;
         std::cout<< "int: " << "impossible" << std::endl;
         std::cout<< "float: " << "nanf" << std::endl;
         std::cout<< "double: " << "nan" << std::endl;
     }
-    else if (number == "-inff" || number == "+inff" || number == "nanf")
+    else if(number == "-inf" || number == "-inff")
     {
         std::cout<<"char: "<<"impossible"<< std::endl;
         std::cout<< "int: " << "impossible" << std::endl;
-        std::cout<< "float: " << "nanf" << std::endl;
-        std::cout<< "double: " << "nan" << std::endl;
+        std::cout<< "float: " << "-inff" << std::endl;
+        std::cout<< "double: " << "-inf" << std::endl;
+    }
+    else if (number == "+inf" || number == "+inff")
+    {
+        std::cout<<"char: "<<"impossible"<< std::endl;
+        std::cout<< "int: " << "impossible" << std::endl;
+        std::cout<< "float: " << "+inff" << std::endl;
+        std::cout<< "double: " << "+inf" << std::endl;
     }
     else
         std::cout << "Data type not recognized" << std::endl;

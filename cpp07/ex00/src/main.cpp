@@ -5,22 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/11 15:32:24 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/12 22:37:52 by oredoine         ###   ########.fr       */
+/*   Created: 2024/02/12 02:14:18 by oredoine          #+#    #+#             */
+/*   Updated: 2024/02/12 02:22:11 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+#include "whatever.hpp"
 
-int main()
+
+
+int main() 
 {
-    Base *mother = generate();
-    identify(mother);
-    Base& childA = *mother ;
-    identify(childA);
-    
-    delete mother;
+    int a = 2;
+    int b = 3;
+    ::swap( a, b );
+    std::cout << "a = " << a << ", b = " << b << std::endl;
+    std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+    std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+    std::string c = "chaine1";
+    std::string d = "chaine2";
+    ::swap(c, d);
+    std::cout << "c = " << c << ", d = " << d << std::endl;
+    std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+    std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+    return 0;
 }

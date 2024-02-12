@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 03:18:40 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/11 03:18:54 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/11 23:34:15 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 #include"Base.hpp"
 
-class c : public 
+class C : public Base
 {
-    private:
-        /* data */
     public:
-        A()
-        ~A();
+
+        ~C();
 };
 
 #endif

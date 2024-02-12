@@ -1,10 +1,10 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = dynamic
+NAME = iter
 GREEN = \033[32m
 COLOR_OFF = \033[0m
-SOURCES = ./src/main.cpp ./src/Base.cpp  ./src/A.cpp ./src/B.cpp ./src/C.cpp
-INCLUDES =  ./includes/Base.hpp ./includes/A.hpp ./includes/B.hpp ./includes/C.hpp
+SOURCES = ./src/main.cpp
+INCLUDES =  ./includes/iter.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all : $(NAME)

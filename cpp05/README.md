@@ -20,3 +20,7 @@
 **THROW :**  
 
 >An exception in C++ can be thrown using the throw keyword. When a program encounters a throw statement, then it immediately terminates the current function and starts finding a matching catch block to handle the thrown exception.
+
+**TYPE CASTING**
+
+> Dynamic cast is a type of casting operation in C++ that is performed during runtime. It is primarily used for safely converting pointers or references to base classes into pointers or references of derived classes. Dynamic cast is part of the C++ type casting operators, and it is typically used in situations where you want to check the actual type of an object before performing a cast.
