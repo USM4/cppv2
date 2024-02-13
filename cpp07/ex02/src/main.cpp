@@ -6,8 +6,22 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 04:56:55 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/12 04:56:56 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/13 01:59:56 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
+
+
+int main()
+{
+    try
+    {
+        Array<int> arr(5);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+}
