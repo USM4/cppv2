@@ -6,48 +6,62 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 05:16:52 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/13 01:58:30 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/14 00:40:31 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
-Array::Array() : Arrsize(0), arr(NULL)
-{
-}
-
-Array::Array(unsigned int n) : Arrsize(n)
+template<typename T>
+Array<T>::Array() : Arrsize(0)
 {
     arr = new T[Arrsize];
 }
 
-Array::Array(const Array &copy): Arrsize(copy->Arrsize)
+template<typename T>
+Array<T>::Array(size_t n) : Arrsize(n)
 {
     arr = new T[Arrsize];
-    for(int i = 0; i <= Arrsize ; i++)
-        this->arr[i] = copy->arr[i];
 }
 
-Array& Array::operator=(const Array& copy)
+template<typename T>
+Array<T>::Array(const Array<T> &copy): Arrsize(copy.Arrsize)
+{
+    arr = new T[Arrsize];
+    for(size_t i = 0; i <= Arrsize ; i++)
+        this->arr[i] = copy.arr[i];
+}
+
+template<typename T>
+Array<T>& Array<T>::operator=(const Array<T>& copy)
 { 
     if(this != &copy)
     {
         delete [] arr;
-        this->Arrsize = copy->Arrsize;
-        for(unsigned int i = 0; i <= Arrsize ; i++)
-            this->arr[i] = copy->arr[i];
+        arr = new T[copy.Arrsize];
+        this->Arrsize = copy.Arrsize;
+        for(size_t i = 0; i <= Arrsize ; i++)
+            this->arr[i] = copy.arr[i];
     }
     return *this;
 }
 
-Array::Array( )
+template<typename T>
+Array<T>::~Array( )
 {
-        delete [] arr;
+    delete [] arr;
 }
 
-T& Array::operator[](const int index)
+template<typename T>
+T& Array<T>::operator[](size_t index)
 {
-    if(index < Arrsize || index > Arrsize)
+    if(index < 0 || index > Arrsize)
         throw std::out_of_range("out of bounds");
     return arr[index];
+}
+
+template<typename T>
+size_t Array<T>::size()
+{
+    return(Arrsize);
 }

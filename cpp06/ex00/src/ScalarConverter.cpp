@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:50:14 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/12 21:39:01 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:47:15 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void convert_printInt(long double num)
         std::cout<< "int : impossible casting would result in overflow or underflow" << std::endl;
     }
     else
-    {        
+    {
        a = static_cast<int>(num);
         std::cerr<< "int : " << a <<  std::endl;
     }
@@ -148,6 +148,11 @@ void  ScalarConverter::convert(std::string number)
 {
     long double a;
     std::string tmp;
+    if(number.empty())
+    {   
+        std::cout<< "Empty argument" << std::endl;
+        return ;
+    }
     if (number[number.size() -1] == 'f')
         tmp = number.substr(0, number.size() - 1);
     else

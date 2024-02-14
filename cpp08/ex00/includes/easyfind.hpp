@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 02:28:49 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/13 18:59:35 by oredoine         ###   ########.fr       */
+/*   Created: 2024/02/14 16:06:47 by oredoine          #+#    #+#             */
+/*   Updated: 2024/02/14 17:38:40 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-#define ITER_HPP
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
-#include<iostream>
+#include <iostream>
 
-template<typename T, typename Function>
-void iter(T *arr, size_t len, Function f)
+#include "easyfind.tpp"
+
+template<typename T>
+int easyfind(T container, int num)
 {
-    size_t i = 0;
-    while (i < len)
-        f(arr[i++]);
+    for(size_t i; i < container.length(); i++)
+        if(container[i] == num)
+            return i;
+        else
+            throw "Not Found";
+    return 0; 
 }
+
 
 #endif
