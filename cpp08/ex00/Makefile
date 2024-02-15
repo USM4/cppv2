@@ -1,10 +1,10 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = easyfind
 GREEN = \033[32m
 COLOR_OFF = \033[0m
 SOURCES = ./src/main.cpp
-INCLUDES =  ./includes/easyfind.hpp ./includes/easyfind.tpp
+INCLUDES =  ./includes/easyfind.hpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all : $(NAME)

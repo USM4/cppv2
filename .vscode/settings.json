@@ -65,6 +65,8 @@
         "utility": "cpp",
         "vector": "cpp",
         "*.tpp": "cpp",
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "__cxx_version": "cpp",
+        "filesystem": "cpp"
     }
 }
