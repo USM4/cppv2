@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 01:39:51 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/16 00:48:09 by oredoine         ###   ########.fr       */
+/*   Created: 2024/02/16 01:40:19 by oredoine          #+#    #+#             */
+/*   Updated: 2024/02/16 03:29:13 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-#define SPAN_HPP
+#ifndef MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
 
 #include <iostream>
 #include <vector>
@@ -19,20 +19,13 @@
 #include <algorithm>
 #include <exception>
 
-class Span
+
+template <typename T>
+class MutantStack : public std::stack<T>
 {
-    private:
-        size_t N;
-        std::vector<int> container;
     public:
-        Span(size_t N);
-        Span(const Span &copy);
-        int shortestSpan();
-        int longestSpan();
-        Span& operator=(const Span &copy);
-        void addNumber(size_t number);
-        void addMany(size_t number);
-        ~Span();
+        MutantStack();
+        ~MutantStack();
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 05:16:52 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/14 00:40:31 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:12:40 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ template<typename T>
 Array<T>::Array(const Array<T> &copy): Arrsize(copy.Arrsize)
 {
     arr = new T[Arrsize];
-    for(size_t i = 0; i <= Arrsize ; i++)
+    for(size_t i = 0; i < Arrsize ; i++)
         this->arr[i] = copy.arr[i];
 }
 
@@ -40,7 +40,7 @@ Array<T>& Array<T>::operator=(const Array<T>& copy)
         delete [] arr;
         arr = new T[copy.Arrsize];
         this->Arrsize = copy.Arrsize;
-        for(size_t i = 0; i <= Arrsize ; i++)
+        for(size_t i = 0; i < Arrsize ; i++)
             this->arr[i] = copy.arr[i];
     }
     return *this;
@@ -55,7 +55,7 @@ Array<T>::~Array( )
 template<typename T>
 T& Array<T>::operator[](size_t index)
 {
-    if(index < 0 || index > Arrsize)
+    if(index < 0 || index >= Arrsize)
         throw std::out_of_range("out of bounds");
     return arr[index];
 }

@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 02:14:18 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/15 03:41:42 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:47:34 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 template<typename T>
 void toUppercCase(T& str) 
 {
-    for (size_t i = 0; i < str.length(); ++i) 
+    for (size_t i = 0; i < str.length(); ++i)
         str[i] = std::toupper(str[i]);
 }
 

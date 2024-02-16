@@ -6,12 +6,11 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 04:56:55 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/15 03:43:51 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:15:12 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
-
 
 int main()
 {
@@ -25,9 +24,9 @@ int main()
         std::cout << "Copied Array Size: " << copiedArray.size() << std::endl;
         Array<int> assignedArray = newArray;
         std::cout << "Assigned Array Size: " << assignedArray.size() << std::endl;
-        for (unsigned int i = 0; i < newArray.size(); ++i) 
+        for (size_t i = 0; i < newArray.size(); ++i)
         {
-            newArray[10] = i * 2;
+            newArray[i] = i * 2;
             std::cout << "Element " << i << ": " << newArray[i] << std::endl;
         }
     }
