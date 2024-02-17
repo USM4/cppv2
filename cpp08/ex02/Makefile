@@ -3,8 +3,8 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = MutantStack
 GREEN = \033[32m
 COLOR_OFF = \033[0m
-SOURCES = ./src/main.cpp ./src/MutantStack.cpp
-INCLUDES =  ./includes/MutantStack.hpp
+SOURCES = ./src/main.cpp
+INCLUDES =  ./includes/MutantStack.hpp ./includes/MutantStack.tpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all : $(NAME)
