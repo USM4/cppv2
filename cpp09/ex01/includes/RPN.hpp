@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 01:39:51 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/18 19:40:58 by oredoine         ###   ########.fr       */
+/*   Created: 2024/02/19 18:59:44 by oredoine          #+#    #+#             */
+/*   Updated: 2024/02/19 19:20:24 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-#define SPAN_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 
-#include <iostream>
+#include<iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 #include <iterator>
+#include <sstream>
 #include <algorithm>
+#include <stack>
+#include <map>
 #include <exception>
+#include <limits>
 
-class Span
+class RPN
 {
-    private:
-        size_t N;
-        std::vector<int> container;
     public:
-        Span(size_t N);
-        Span(const Span &copy);
-        int shortestSpan();
-        int longestSpan();
-        Span& operator=(const Span &copy);
-        void addNumber(size_t number);
-        void addMany(size_t number);
-        ~Span();
+        RPN();
+        ~RPN();
+        void ReversePolishNotation(std::string str);
 };
+
+
 
 #endif

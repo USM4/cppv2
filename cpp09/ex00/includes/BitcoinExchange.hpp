@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 01:39:51 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/18 19:40:58 by oredoine         ###   ########.fr       */
+/*   Created: 2024/02/17 20:52:06 by oredoine          #+#    #+#             */
+/*   Updated: 2024/02/19 18:07:16 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-#define SPAN_HPP
+#ifndef BITCOINEXCHANGE
+#define BITCOINEXCHANGE
 
-#include <iostream>
+#include<iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 #include <iterator>
+#include <sstream>
 #include <algorithm>
+#include <stack>
+#include <map>
 #include <exception>
+#include <limits>
 
-class Span
-{
-    private:
-        size_t N;
-        std::vector<int> container;
+class BitcoinExchange
+{    
+    private :
+        std::map<std::string, double> myDbMap;
+        double value;
     public:
-        Span(size_t N);
-        Span(const Span &copy);
-        int shortestSpan();
-        int longestSpan();
-        Span& operator=(const Span &copy);
-        void addNumber(size_t number);
-        void addMany(size_t number);
-        ~Span();
+        BitcoinExchange();
+        void bitcoin(std::string str);
+        void fillDatabase();
+        ~BitcoinExchange();
+        void BitcoinOperation(std::string date);
+        void ParseSingleLine(std::string line);
+
 };
 
 #endif
