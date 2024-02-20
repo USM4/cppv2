@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g -std=c++98
 NAME = RPN
 GREEN = \033[32m
 COLOR_OFF = \033[0m
