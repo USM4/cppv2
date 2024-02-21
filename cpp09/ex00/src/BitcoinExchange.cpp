@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 20:53:30 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/19 18:32:05 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:39:54 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,7 @@ void BitcoinExchange::ParseSingleLine(std::string line)
         if (jour < 10)
             std::cout << "0";
         std::cout << jour << " ";
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
+
         double val = ParseBitcoinValue(value);
         this->value = val;
         BitcoinOperation(date);
