@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:50:14 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/14 19:32:56 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:44:26 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void convert_printFloat(long double num)
         return ;
     }
     else 
-    { 
+    {
         a = static_cast<float>(num);
         std::cout<< std::fixed << "float : " << std::setprecision(2) << a << "f" << std::endl;
     }

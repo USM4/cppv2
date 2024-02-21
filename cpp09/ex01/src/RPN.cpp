@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:18:50 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/20 05:16:22 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:31:30 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void RPN::ReversePolishNotation(std::string str)
     for (size_t i = 0; i < str.length(); i++)
     {
         if ('0' <= str[i] && str[i] <= '9')
-        {
             st.push(str[i] - 48);
-        }
         else if (isOperator(str[i]))
         {
             if (st.size() < 2)
@@ -67,7 +65,6 @@ void RPN::ReversePolishNotation(std::string str)
     }
     if (st.size() != 1)
         throw std::runtime_error("Invalid expressions given");
-
     this->result = st.top();
 }
 
