@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:37:29 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/22 01:34:00 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:38:01 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 PmergeMe::PmergeMe()
 {
 
+}
+
+PmergeMe::PmergeMe(const PmergeMe &copy)
+{
+    *this = copy;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &copy)
+{
+    this->malongo = copy.malongo;
+    this->malongo_deque = copy.malongo_deque;
+    this->vector_bef = copy.vector_bef;
+    this->vector_aft = copy.vector_aft;
+    this->deque_bef = copy.deque_bef;
+    this->deque_aft = copy.deque_aft;
+    this->container = copy.container;
+    this->deque = copy.deque;
+    this->pairs = copy.pairs;
+    this->pairs_deque = copy.pairs_deque;
+    return *this;
 }
 
 bool PmergeMe::checkIsDigit(std::string str)
@@ -114,7 +134,10 @@ void PmergeMe::vector_algo()
         gettimeofday(&str, NULL);
         this->vector_bef = str.tv_sec * 1000000LL + str.tv_usec;
         if (this->container.size() < 2)
-            throw "need more elements";
+        {
+            std::cout << "more numbers please" << std::endl;
+            exit (0);
+        }
         size_t i = 0;
         if (container.size() % 2 != 0)
         {
@@ -196,7 +219,6 @@ void PmergeMe::print_container()
     
 }
 
-// ------------------deque algorithm------------------
 bool PmergeMe::checkIsDigit_deque(std::string str)
 {
     for (size_t i = 0; i < str.length(); i++)

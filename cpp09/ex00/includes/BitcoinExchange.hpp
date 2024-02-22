@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 20:52:06 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/19 18:07:16 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:52:25 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ class BitcoinExchange
         double value;
     public:
         BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange &copy);
+        BitcoinExchange& operator=(const BitcoinExchange &copy);
         void bitcoin(std::string str);
         void fillDatabase();
         ~BitcoinExchange();

@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 20:53:30 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/21 22:39:54 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:58:52 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,17 @@ BitcoinExchange::BitcoinExchange()
 {
 }
 
-BitcoinExchange::~BitcoinExchange()
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy)
 {
+    *this = copy;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &copy)
+{
+    this->value = copy.value;
+    this->myDbMap = copy.myDbMap;
+     return *this;
 }
 
 int checkFileExtension(std::string file)
@@ -26,7 +35,7 @@ int checkFileExtension(std::string file)
     std::string extension;
     if(dotpos != std::string::npos)
         extension = file.substr(dotpos + 1);
-    if (extension != "txt")
+    if (extension != "csv")
         return 0;
     return 1;
 }
@@ -48,7 +57,7 @@ double ParseBitcoinValue(std::string value)
         throw std::runtime_error("Error: bad input empty value .");
     if (val < 0)
         throw std::runtime_error("Error: not a positive number.");
-    if(val > std::numeric_limits<int>::max())
+    if(val > 1000)
         throw std::runtime_error("Error: too large a number.");
     return val;
 }
@@ -56,8 +65,11 @@ double ParseBitcoinValue(std::string value)
 double  CheckIsValidYear(std::string year)
 {
     double annee = CheckIsValidNumber(year);
-    if(annee < 2009 || annee > 2022)
+    
+    if(annee < 2009)
+    {
         throw std::runtime_error("Error : Bad input annee");
+    }
     return annee;
 }
 double  CheckIsValidMonth(std::string month)
@@ -133,11 +145,11 @@ void BitcoinExchange::ParseSingleLine(std::string line)
 
 void BitcoinExchange::bitcoin(std::string str)
 {
-    if(!checkFileExtension(str))
-    {
-        std::cerr<< "invalid input file"<< std::endl;
-        return;
-    }
+    // if(!checkFileExtension(str))
+    // {
+    //     std::cerr<< "invalid input file"<< std::endl;
+    //     return;
+    // }
     std::ifstream inputfile(str);
     if (!inputfile)
     {
@@ -154,9 +166,9 @@ void BitcoinExchange::bitcoin(std::string str)
     }
 }
 
-
-
- 
+BitcoinExchange::~BitcoinExchange()
+{
+} 
 
 void BitcoinExchange::fillDatabase()
 {
@@ -164,7 +176,7 @@ void BitcoinExchange::fillDatabase()
     if (!database)
     {
         std::cerr<< "Error: could not open dbfile." << std::endl;
-        return;
+        exit(1);
     }
     std::string line;
     std::string date;
@@ -184,4 +196,3 @@ void BitcoinExchange::fillDatabase()
     // for (it = this->myDbMap.begin(); it != this->myDbMap.end(); ++it)
     // std::cout << "Date: " << it->first<< std::endl << "Value: " << it->second << std::endl;
 }
-

@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:40:37 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/22 01:30:05 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:36:12 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ class PmergeMe
         std::deque<std::pair<int, int> > pairs_deque;
     public:
         PmergeMe();
+        PmergeMe(const PmergeMe &copy);
+        PmergeMe& operator=(const PmergeMe &copy);
         void addToContainer(std::string str);
         void fillContainer(std::string str);
         void vector_algo();

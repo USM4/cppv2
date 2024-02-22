@@ -6,7 +6,7 @@
 /*   By: oredoine <oredoine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:59:44 by oredoine          #+#    #+#             */
-/*   Updated: 2024/02/20 04:50:32 by oredoine         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:49:41 by oredoine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class RPN
         int result;
     public:
         RPN();
+        RPN(const RPN &copy);
+        RPN& operator=(const RPN &copy);
         ~RPN();
         void ReversePolishNotation(std::string str);
         int getResult();
